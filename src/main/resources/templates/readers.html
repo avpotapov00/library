@@ -18,56 +18,11 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
     <style>
-        .btn-group-vertical {
-            padding-left: 10px;
-            margin-left: auto;
-        }
 
-        #tableSearch {
-            margin-top: 1rem;
-        }
-
-        #container {
-            padding-top: 80px;
-            height: 100%;
-            width: 100%;
-            font-size: 0;
-        }
-
-        #left, #middle, #right {
+        #left, #middle {
             display: inline-block;
-            *display: inline;
             zoom: 1;
             vertical-align: top;
-            font-size: 12px;
-        }
-
-        #left {
-            width: 20%;
-        }
-
-        #middle {
-            width: 70%;
-        }
-
-        #right {
-            width: 5%;
-        }
-
-        #searchForm {
-            margin-top: 30px;
-        }
-
-        #success-add-label {
-            margin: 10px auto auto;
-        }
-
-        #success-update-label {
-            margin: 10px auto auto;
-        }
-
-        #success-delete-label {
-            margin: 10px auto auto;
         }
 
     </style>
@@ -96,10 +51,10 @@
 </nav>
 
 
-<div id="container">
+<div id="container" class="pt-5 h-100 w-100">
 
-    <div id="left">
-        <div class="btn-group-vertical">
+    <div id="left" style="width: 20%">
+        <div class="btn-group-vertical pl-3 ml-auto">
 
             <button id="allBtn" class="btn-lg btn-secondary btn-block" onclick="onAllReadersPressed()"
                     type="submit">
@@ -117,12 +72,12 @@
         </div>
     </div>
 
-    <div id="middle">
+    <div id="middle" style="width: 70%">
 
         <div id="content">
             <template id="table-template">
                 <span style="font-size: large; font-family: Arial Black,monospace; ">
-                <table id="tableAll" class="table table-bordered">
+                <table id="tableAll" style="word-break: break-all;" class="table table-bordered">
                     <thead class="thead-dark">
                     <tr>
                         <th scope="col">Name</th>
@@ -147,9 +102,9 @@
                     </div>
 
 
-                    <div id="tableSearch">
+                    <div id="tableSearch" class="mt-2">
                         <span style="font-size: large; font-family: Arial Black,monospace; ">
-                            <table id="table-search" class="table table-bordered">
+                            <table id="table-search" style="word-break: break-all;" class="table table-bordered">
                                 <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">#</th>
@@ -184,7 +139,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="success-add-label" hidden>
+                    <div id="success-add-label" class="mt-1" hidden>
                         <div class="card bg-success w-25 d-flex justify-content-center">
                             <h5 class="text-center text-light">Success</h5>
                         </div>

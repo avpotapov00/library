@@ -6,8 +6,6 @@ let lastPressedButton = null;
 
 window.onload = () => setup()
 
-const whiteSpaces = /^[A-Za-z]+$/;
-
 
 function showBooks(books, tableName = "table") {
     const table = document.getElementById(tableName)
