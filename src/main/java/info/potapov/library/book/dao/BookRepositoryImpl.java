@@ -70,7 +70,7 @@ public class BookRepositoryImpl implements BookRepository {
     public void deleteByCode(String code) {
         int deletedAmount = jdbcTemplate.update("delete from book where code = ?", code);
         if (deletedAmount == 0) {
-            throw new BookNotFoundException("book can not be found with id: " + code);
+            throw new BookNotFoundException("book can not be found with code: " + code);
         }
     }
 

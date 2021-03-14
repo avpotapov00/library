@@ -2,7 +2,7 @@ const listStartIndex = 0;
 
 let lastTemplateName = null
 
-const letters = /^[A-Za-z]+$/;
+const letters = /^[A-Za-zА-Яа-я]+$/;
 
 let lastPressedButton = null;
 
@@ -43,10 +43,10 @@ async function setup() {
 
 function pressButton(buttonId) {
     if (lastPressedButton != null) {
-        lastPressedButton.setAttribute("class","btn-lg btn-secondary mt-3 btn-block");
+        lastPressedButton.setAttribute("class", "btn-lg btn-secondary mt-3 btn-block");
     }
     const button = document.getElementById(buttonId)
-    button.setAttribute("class","btn-lg btn-primary mt-3 btn-block")
+    button.setAttribute("class", "btn-lg btn-primary mt-3 btn-block")
     lastPressedButton = button
 }
 
@@ -104,7 +104,7 @@ function onAddPerformed() {
     codeInput.value = ""
     authorInput.value = ""
 
-    if (name == null || !name[0].match(letters) || name.trim().length === 0 || name.length > 255) {
+    if (name == null || name.trim().length === 0 || !name[0].match(letters) || name.length > 255) {
         alert("Name must be not empty and less than 255 symbols")
         return
     }
@@ -114,12 +114,12 @@ function onAddPerformed() {
         return
     }
 
-    if (author == null || !author.match(letters) || author.trim().length === 0 ||  author.length > 255) {
+    if (author == null || !author.match(letters) || author.trim().length === 0 || author.length > 255) {
         alert("Author must be literal string, not empty and less than 255 symbols")
         return
     }
 
-    axios.put('/api/book/add', { author: author.trim(), name: name.trim(), code: code.trim() })
+    axios.put('/api/book/add', {author: author.trim(), name: name.trim(), code: code.trim()})
         .then(response => {
             showSuccessBar("success-add-label")
         })
@@ -157,14 +157,14 @@ function onUpdatePerformed() {
         return
     }
 
-    if (newCode == null || newCode.trim().length === 0 ||  newCode.length > 255) {
+    if (newCode == null || newCode.trim().length === 0 || newCode.length > 255) {
         alert("New code must be not empty and less than 255 symbols")
         return
     }
 
     console.log(oldCode, newCode)
 
-    axios.post('/api/book/change', { oldCode: oldCode.trim(), newCode: newCode.trim() })
+    axios.post('/api/book/change', {oldCode: oldCode.trim(), newCode: newCode.trim()})
         .then(response => {
             showSuccessBar("success-update-label")
         })
@@ -183,7 +183,7 @@ function onDeletePerformed() {
     let code = codeInput.value
     codeInput.value = ""
 
-    if (code == null || code.trim().length === 0 ||  code.length > 255) {
+    if (code == null || code.trim().length === 0 || code.length > 255) {
         alert("Code must be not empty and less than 255 symbols")
         return
     }
