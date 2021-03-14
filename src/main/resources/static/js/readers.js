@@ -101,10 +101,12 @@ async function showSuccessBar(labelName) {
 
 function pressButton(buttonId) {
     if (lastPressedButton != null) {
-        lastPressedButton.setAttribute("class","btn-lg btn-secondary mt-3 btn-block");
+        let lastClassName = lastPressedButton.className
+        lastPressedButton.setAttribute("class", lastClassName.replace("primary", "secondary"));
     }
     const button = document.getElementById(buttonId)
-    button.setAttribute("class","btn-lg btn-primary mt-3 btn-block")
+    let nextClassName = button.className
+    button.setAttribute("class", nextClassName.replace("secondary", "primary"))
     lastPressedButton = button
 }
 
