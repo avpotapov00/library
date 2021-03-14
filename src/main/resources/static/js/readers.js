@@ -83,7 +83,7 @@ function onAddPerformed() {
     }
     field.value = ""
     axios
-        .post('/api/reader/add/', { readerName: name.trim() })
+        .post('/api/reader/add/', {readerName: name.trim()})
         .then(response => {
             showSuccessBar("success-add-label")
         })
@@ -109,6 +109,13 @@ function pressButton(buttonId) {
     lastPressedButton = button
 }
 
+function onReaderViewPerformed(cardNumber) {
+    onViewRentedPressed()
+    let cardInput = document.querySelector("#idInput")
+    cardInput.value = cardNumber
+    onSearchButtonPressed()
+}
+
 function showReaders(readers) {
     const table = document.getElementById("tableAll")
     for (let i = 1; i < table.rows.length; i++) {
@@ -119,6 +126,15 @@ function showReaders(readers) {
         let reader = readers[i]
         row.insertCell(0).innerText = reader.name
         row.insertCell(1).innerText = reader.cardNumber
+
+        const btn = document.createElement('button');
+        btn.className = "btn-search-id";
+        btn.innerText = "GO"
+        btn.setAttribute("class", "btn btn-secondary")
+        btn.onclick = () => {
+            onReaderViewPerformed(reader.cardNumber)
+        };
+        row.insertCell(2).appendChild(btn);
     }
 }
 
