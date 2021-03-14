@@ -78,7 +78,6 @@ function onSearchButtonPressed() {
     axios
         .get('/api/book/' + code)
         .then(response => {
-            console.log(response)
             showBooks([response.data], "table-search")
         })
         .catch(error => {
@@ -164,7 +163,6 @@ function onUpdatePerformed() {
         return
     }
 
-    console.log(oldCode, newCode)
 
     axios.post('/api/book/change', {oldCode: oldCode.trim(), newCode: newCode.trim()})
         .then(response => {
