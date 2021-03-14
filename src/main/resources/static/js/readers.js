@@ -14,6 +14,9 @@ function showBooks(books, tableName = "table") {
     for (let i = table.rows.length - 1; i > 0; i--) {
         table.deleteRow(i)
     }
+    if (books.length === 0) {
+        alert("This reader has no books")
+    }
     for (let i = 0; i < books.length; i++) {
         let row = table.insertRow(i + 1)
         let book = books[i]
@@ -77,7 +80,7 @@ function onAddPerformed() {
     let field = document.getElementById("inputName")
     let name = field.value
     if (name == null || name.trim().length === 0 || name.length > 100) {
-        alert("Incorrect input. Id must be less than 20 symbols and not empty.")
+        alert("Incorrect input. Name must be less than 100 symbols and not empty.")
         return
     }
     axios
