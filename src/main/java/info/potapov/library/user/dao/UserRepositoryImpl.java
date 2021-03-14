@@ -2,7 +2,6 @@ package info.potapov.library.user.dao;
 
 import info.potapov.library.user.User;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
 @Repository
