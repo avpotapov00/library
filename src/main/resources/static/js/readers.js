@@ -1,11 +1,14 @@
 let listStartIndex = 0
 
+const pagingSize = 100
+
 let lastTemplateName = null
 
 let lastPressedButton = null;
 
 window.onload = () => setup()
 
+var readersCount = 0
 
 function showBooks(books, tableName = "table") {
     const table = document.getElementById(tableName)
@@ -138,12 +141,31 @@ function showReaders(readers) {
     }
 }
 
-function onAllReadersPressed() {
+function showRangeButtons() {
+    let nextButton = document.getElementById("paging-next-btn")
+    let prevButton = document.getElementById("paging-prev-btn")
+    prevButton.hidden = listStartIndex === 0;
+    nextButton.hidden = readersCount <= listStartIndex + pagingSize;
+}
+
+function onPagingPrevButtonPressed() {
+    listStartIndex -= pagingSize;
+    onAllReadersPressed()
+}
+
+function onPagingNextButtonPressed() {
+    listStartIndex += pagingSize;
+    onAllReadersPressed()
+}
+
+async function onAllReadersPressed() {
     pressButton("allBtn")
+    readersCount = (await axios.get("/api/reader/count")).data
     axios
-        .get('/api/reader/all?from=' + listStartIndex + "&limit=500")
+        .get('/api/reader/all?from=' + listStartIndex + "&limit=" + pagingSize)
         .then(response => {
-            presentTemplate("table-template", "tableAll")
+            presentTemplate("table-template", "table-card")
+            showRangeButtons()
             showReaders(response.data)
         });
 }

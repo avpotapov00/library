@@ -1,10 +1,14 @@
-const listStartIndex = 0;
+let listStartIndex = 0;
+
+const pagingSize = 100
 
 let lastTemplateName = null
 
 const lettersAndSpaces = /^.*[A-Za-zА-Яа-я]+.*$/;
 
 let lastPressedButton = null;
+
+var allBooksCount = 0
 
 window.onload = () => setup()
 
@@ -52,12 +56,14 @@ function pressButton(buttonId) {
     lastPressedButton = button
 }
 
-function onAllBooksPressed() {
+async function onAllBooksPressed() {
     pressButton("allBtn")
+    allBooksCount = (await axios.get("/api/book/count")).data
     axios
         .get('/api/book/all?from=' + listStartIndex + "&limit=500")
         .then(response => {
-            presentTemplate("table-template", "table")
+            presentTemplate("table-template", "table-card")
+            showRangeButtons()
             showBooks(response.data)
         });
 
@@ -196,4 +202,21 @@ function onDeletePerformed() {
             alert("Can't delete book: " + error.response.data.message)
         })
 
+}
+
+function showRangeButtons() {
+    let nextButton = document.getElementById("paging-next-btn")
+    let prevButton = document.getElementById("paging-prev-btn")
+    prevButton.hidden = listStartIndex === 0;
+    nextButton.hidden = allBooksCount <= listStartIndex + pagingSize;
+}
+
+function onPagingPrevButtonPressed() {
+    listStartIndex -= pagingSize;
+    onAllReadersPressed()
+}
+
+function onPagingNextButtonPressed() {
+    listStartIndex += pagingSize;
+    onAllReadersPressed()
 }
