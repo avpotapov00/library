@@ -13,7 +13,7 @@ create table if not exists book
     name     varchar(255) not null,
     code     varchar(64)  not null check (book.code <> ''),
     author   varchar(255),
-    owner_id integer      references reader (card_number) on delete set null
+    owner_card_number integer      references reader (card_number) on delete set null
 );
 
 create index if not exists book_code on book (code);

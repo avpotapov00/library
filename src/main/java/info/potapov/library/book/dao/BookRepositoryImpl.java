@@ -25,13 +25,13 @@ public class BookRepositoryImpl implements BookRepository {
     /**
      * Finds all books for the reader with the given id
      *
-     * @param userId user id
+     * @param readerCardNumber user id
      * @return list of books
      */
     @Override
-    public List<Book> findByUser(long userId) {
-        String sql = "select b.* from book b where b.owner_id = ?";
-        return jdbcTemplate.query(sql, bookRowMapper, userId);
+    public List<Book> findByReader(long readerCardNumber) {
+        String sql = "select b.* from book b where b.owner_card_number = ?";
+        return jdbcTemplate.query(sql, bookRowMapper, readerCardNumber);
     }
 
     /**

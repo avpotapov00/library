@@ -14,7 +14,7 @@ public interface BookRepository {
      * @param userId user id
      * @return list of books
      */
-    List<Book> findByUser(long userId);
+    List<Book> findByReader(long userId);
 
     /**
      * Finds books with the given code

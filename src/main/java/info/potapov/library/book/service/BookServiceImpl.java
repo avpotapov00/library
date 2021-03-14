@@ -39,7 +39,7 @@ public class BookServiceImpl implements BookService {
         if (!readerService.isReaderExists(readerCardNumber)) {
             throw new ReaderNotFoundException("User not found with id: " + readerCardNumber);
         }
-        return repository.findByUser(readerCardNumber);
+        return repository.findByReader(readerCardNumber);
     }
 
     /**
