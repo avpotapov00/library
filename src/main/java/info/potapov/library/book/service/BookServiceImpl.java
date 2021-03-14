@@ -5,7 +5,7 @@ import info.potapov.library.book.factory.BookFactory;
 import info.potapov.library.book.entity.BookInfo;
 import info.potapov.library.book.dao.BookRepository;
 import info.potapov.library.exceptions.DataConflictException;
-import info.potapov.library.exceptions.UserNotFoundException;
+import info.potapov.library.exceptions.ReaderNotFoundException;
 import info.potapov.library.reader.service.ReaderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -28,19 +28,36 @@ public class BookServiceImpl implements BookService {
         this.readerService = readerService;
     }
 
+    /**
+     * Returns books belonging to the reader
+     *
+     * @param readerCardNumber reader card number
+     * @return list of books
+     */
     @Override
-    public List<Book> getBooksByUser(long userId) {
-        if (!readerService.isUserExists(userId)) {
-            throw new UserNotFoundException("User not found with id: " + userId);
+    public List<Book> getBooksByReader(long readerCardNumber) {
+        if (!readerService.isUserExists(readerCardNumber)) {
+            throw new ReaderNotFoundException("User not found with id: " + readerCardNumber);
         }
-        return repository.findByUser(userId);
+        return repository.findByUser(readerCardNumber);
     }
 
+    /**
+     * Finds books with the given code
+     *
+     * @param code book code
+     * @return book
+     */
     @Override
     public Book getBook(String code) {
         return repository.findBook(code);
     }
 
+    /**
+     * Creates and saves a book
+     *
+     * @param bookInfo book info
+     */
     @Override
     public void create(BookInfo bookInfo) {
         Book book = factory.create(bookInfo);
@@ -48,6 +65,11 @@ public class BookServiceImpl implements BookService {
         repository.save(book);
     }
 
+    /**
+     * Deletes the book by code
+     *
+     * @param code book code
+     */
     @Override
     public void deleteBook(String code) {
         repository.deleteByCode(code);

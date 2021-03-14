@@ -81,6 +81,7 @@ function onAddPerformed() {
         alert("Incorrect input. Name must be less than 100 symbols and not empty.")
         return
     }
+    field.value = ""
     axios
         .post('/api/reader/add/', { readerName: name.trim() })
         .then(response => {

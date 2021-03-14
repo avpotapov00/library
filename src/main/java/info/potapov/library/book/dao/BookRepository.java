@@ -4,6 +4,7 @@ import info.potapov.library.book.entity.Book;
 
 import java.util.List;
 import java.util.Optional;
+import info.potapov.library.exceptions.*;
 
 public interface BookRepository {
 
@@ -68,5 +69,13 @@ public interface BookRepository {
      */
     int findBooksWithOwnerCount();
 
-    List<Book> findBookInRange(int from, int to);
+
+    /**
+     * Finds books in the specified interval in the sort order of their id
+     *
+     * @param from  start position
+     * @param limit interval size
+     * @return list of books
+     */
+    List<Book> findBookInRange(int from, int limit);
 }

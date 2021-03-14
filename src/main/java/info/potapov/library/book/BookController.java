@@ -35,7 +35,7 @@ public class BookController {
 
     @GetMapping("/user/{userId}")
     public List<BookView> getBooks(@PathVariable Long userId) {
-        List<Book> book = service.getBooksByUser(userId);
+        List<Book> book = service.getBooksByReader(userId);
         return book.stream()
                 .map(viewMapper::toView)
                 .collect(Collectors.toList());

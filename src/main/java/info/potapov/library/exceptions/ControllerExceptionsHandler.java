@@ -26,8 +26,8 @@ public class ControllerExceptionsHandler extends ResponseEntityExceptionHandler 
     }
 
 
-    @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<Object> handleUserNotFound(UserNotFoundException exception) {
+    @ExceptionHandler(ReaderNotFoundException.class)
+    public ResponseEntity<Object> handleUserNotFound(ReaderNotFoundException exception) {
         Map<String, Object> body = new HashMap<>();
         body.put("timestamp", LocalDateTime.now());
         body.put("message", exception.getMessage());

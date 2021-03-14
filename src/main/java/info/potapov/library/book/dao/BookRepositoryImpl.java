@@ -125,6 +125,13 @@ public class BookRepositoryImpl implements BookRepository {
         return count != null ? count : 0;
     }
 
+    /**
+     * Finds books in the specified interval in the sort order of their id
+     *
+     * @param from  start position
+     * @param limit interval size
+     * @return list of books
+     */
     @Override
     public List<Book> findBookInRange(int from, int limit) {
         String sql = "select b.* from book b limit ? offset ?";

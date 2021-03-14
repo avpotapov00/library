@@ -4,6 +4,8 @@ let lastTemplateName = null
 
 const letters = /^[A-Za-zА-Яа-я]+$/;
 
+const lettersAndSpaces = /^.*[A-Za-zА-Яа-я]+.*$/;
+
 let lastPressedButton = null;
 
 window.onload = () => setup()
@@ -115,7 +117,7 @@ function onAddPerformed() {
         return
     }
 
-    if (author == null || !author.match(letters) || author.trim().length === 0 || author.length > 255) {
+    if (author == null || !author.match(lettersAndSpaces) || author.trim().length === 0 || author.length > 255) {
         alert("Author must be literal string, not empty and less than 255 symbols")
         return
     }

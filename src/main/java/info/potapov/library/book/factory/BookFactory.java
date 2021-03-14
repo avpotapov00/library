@@ -7,6 +7,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class BookFactory {
 
+    /**
+     * Creates a book
+     *
+     * @param info book info
+     * @return created book
+     */
     public Book create(BookInfo info) {
         return Book.builder()
                 .id(info.getId())
