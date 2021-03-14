@@ -68,7 +68,7 @@ public class BookController {
 
     @GetMapping("/all")
     public List<BookView> getBooks(@Validated SectionQueryDTO dto) {
-        List<Book> books = service.getBooksOfRange(dto.getFrom(), dto.getLimit());
+        List<Book> books = service.getBooksInRange(dto.getFrom(), dto.getLimit());
         return books.stream()
                 .map(viewMapper::toView)
                 .collect(Collectors.toList());
