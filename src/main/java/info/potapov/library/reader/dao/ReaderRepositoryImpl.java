@@ -62,7 +62,7 @@ public class ReaderRepositoryImpl implements ReaderRepository {
      */
     @Override
     public List<Reader> findReadersInRange(int from, int limit) {
-        String sql = "select r.* from reader r limit ? offset ?";
+        String sql = "select r.* from reader r  order by r.card_number limit ? offset ?";
         return jdbcTemplate.query(sql, rowMapper, limit, from);
     }
 }
