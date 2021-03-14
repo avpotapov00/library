@@ -41,7 +41,7 @@ function presentTemplate(templateName, name) {
 }
 
 async function setup() {
-
+    onViewRentedPressed()
 }
 
 function onViewRentedPressed() {
