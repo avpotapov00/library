@@ -2,8 +2,6 @@ const listStartIndex = 0;
 
 let lastTemplateName = null
 
-const letters = /^[A-Za-zА-Яа-я]+$/;
-
 const lettersAndSpaces = /^.*[A-Za-zА-Яа-я]+.*$/;
 
 let lastPressedButton = null;
@@ -107,7 +105,7 @@ function onAddPerformed() {
     codeInput.value = ""
     authorInput.value = ""
 
-    if (name == null || name.trim().length === 0 || !name[0].match(letters) || name.length > 255) {
+    if (name == null || name.trim().length === 0 || name.length > 255) {
         alert("Name must be not empty and less than 255 symbols")
         return
     }
