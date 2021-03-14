@@ -20,25 +20,48 @@ public class ReaderServiceImpl implements ReaderService {
         this.factory = factory;
     }
 
+    /**
+     * Creates and saves a reader
+     *
+     * @param readerInfo reader info
+     */
     @Override
-    public void addUser(ReaderInfo readerInfo) {
+    public void createReader(ReaderInfo readerInfo) {
         Reader reader = factory.create(readerInfo);
         repository.save(reader);
     }
 
+    /**
+     * Total number of readers
+     *
+     * @return number of readers
+     */
     @Override
     public int getReadersCount() {
         return repository.count();
     }
 
+    /**
+     * Checks that a reader with this number exists
+     *
+     * @param readerCardNumber reader catd number
+     * @return result of check
+     */
     @Override
-    public boolean isUserExists(long userId) {
-        return repository.existsById(userId);
+    public boolean isReaderExists(long readerCardNumber) {
+        return repository.existsByCardNumber(readerCardNumber);
     }
 
+    /**
+     * Finds readers in the specified interval in the sort order of their id
+     *
+     * @param from  start position
+     * @param limit interval size
+     * @return list of readers
+     */
     @Override
     public List<Reader> getReadersOfRange(int from, int limit) {
-        return repository.findBookInRange(from, limit);
+        return repository.findReadersInRange(from, limit);
     }
 
 }

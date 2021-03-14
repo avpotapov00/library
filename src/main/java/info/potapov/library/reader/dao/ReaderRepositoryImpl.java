@@ -18,11 +18,21 @@ public class ReaderRepositoryImpl implements ReaderRepository {
         this.rowMapper = rowMapper;
     }
 
+    /**
+     * Saves the reader
+     *
+     * @param reader reader
+     */
     @Override
     public void save(Reader reader) {
         jdbcTemplate.update("insert into reader (name) values(?)", reader.getUserName());
     }
 
+    /**
+     * Total number of readers
+     *
+     * @return number or readers
+     */
     @Override
     public int count() {
         String sql = "select count(*) from reader";
@@ -30,15 +40,28 @@ public class ReaderRepositoryImpl implements ReaderRepository {
         return count != null ? count : 0;
     }
 
+    /**
+     * Checks that a reader with this number exists
+     *
+     * @param cardNumber reader catd number
+     * @return result of check
+     */
     @Override
-    public boolean existsById(long userId) {
+    public boolean existsByCardNumber(long cardNumber) {
         String sql = "select count(*) from reader where card_number = ?";
-        Integer count = jdbcTemplate.queryForObject(sql, Integer.class, userId);
+        Integer count = jdbcTemplate.queryForObject(sql, Integer.class, cardNumber);
         return count != null && count != 0;
     }
 
+    /**
+     * Finds readers in the specified interval in the sort order of their id
+     *
+     * @param from  start position
+     * @param limit interval size
+     * @return list of readers
+     */
     @Override
-    public List<Reader> findBookInRange(int from, int limit) {
+    public List<Reader> findReadersInRange(int from, int limit) {
         String sql = "select r.* from reader r limit ? offset ?";
         return jdbcTemplate.query(sql, rowMapper, limit, from);
     }

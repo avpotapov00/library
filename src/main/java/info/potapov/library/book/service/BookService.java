@@ -39,11 +39,34 @@ public interface BookService {
      */
     void deleteBook(String code);
 
+    /**
+     * Changes the code of the book
+     *
+     * @param oldCode old code
+     * @param newCode new code
+     */
     void changeCode(String oldCode, String newCode);
 
+    /**
+     * Total number of books
+     *
+     * @return books number
+     */
     int getBooksCount();
 
+    /**
+     * Total number of books without owner
+     *
+     * @return books number
+     */
     int getBooksWithOwnerCount();
 
-    List<Book> getBooksOfRange(int from, int to);
+    /**
+     * Finds books in the specified interval in the sort order of their id
+     *
+     * @param from  start position
+     * @param limit interval size
+     * @return list of books
+     */
+    List<Book> getBooksInRange(int from, int limit);
 }

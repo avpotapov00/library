@@ -1,6 +1,5 @@
 package info.potapov.library.reader;
 
-import info.potapov.library.book.view.BookView;
 import info.potapov.library.common.dto.SectionQueryDTO;
 import info.potapov.library.reader.dto.ReaderDTO;
 import info.potapov.library.reader.dto.ReaderDTOInfoAdapter;
@@ -29,7 +28,7 @@ public class ReaderController {
 
     @PostMapping("/add")
     public void addUser(@RequestBody @Validated ReaderDTO readerDTO) {
-        service.addUser(new ReaderDTOInfoAdapter(readerDTO));
+        service.createReader(new ReaderDTOInfoAdapter(readerDTO));
     }
 
     @GetMapping("/count")
